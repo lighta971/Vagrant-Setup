@@ -9,17 +9,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
-    config.vm.network :forwarded_port, guest: 80, host: 8080
-
     config.vm.provision :shell, :path => "install.sh"
 
-    # If true, then any SSH connections made will enable agent forwarding.
-    # Default value: false
-    # config.ssh.forward_agent = true
+    config.vm.network :private_network, {
+      ip: "10.96.48.24",
+    }
+    
+    #to access vm by localhost:8080
+    #config.vm.network :forwarded_port, guest: 80, host: 8080
 
-    # Share an additional folder to the guest VM. The first argument is
-    # the path on the host to the actual folder. The second argument is
-    # the path on the guest to mount the folder. And the optional third
-    # argument is a set of non-required options.
-    # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "laravel"
+    
+    vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
+    vb.customize ["modifyvm", :id, "--cpus", "1"]
+    vb.customize ["modifyvm", :id, "--memory", "512"]
+    vb.customize ["modifyvm", :id, "--vtxvpid", "off"]
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+  end
 end
