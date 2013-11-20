@@ -54,6 +54,10 @@ echo "--- Composer is the future. But you knew that, did you master? Nice job. -
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
+echo "--- Aliases setting ---"
+echo "# alias artisan command so you do not have to cd to directory" >> /home/vagrant/.bashrc
+echo 'alias artisan="php /vagrant/artisan"' >> /home/vagrant/.bashrc
+
 # Laravel stuff here, if you want
 
 echo "--- All set to go! Would you like to play a game? ---"
