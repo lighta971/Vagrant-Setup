@@ -10,10 +10,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
     config.vm.provision :shell, :path => "install.sh"
-
-    config.vm.network :private_network, {
-      ip: "10.96.48.24",
-    }
+    
+    #http://localhost:8082
+    config.vm.network :forwarded_port, guest: 80, host: 8082
     
     #to access vm by localhost:8080
     #config.vm.network :forwarded_port, guest: 80, host: 8080
