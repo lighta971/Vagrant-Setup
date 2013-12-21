@@ -58,6 +58,11 @@ echo "--- Aliases setting ---"
 echo "# alias artisan command so you do not have to cd to directory" >> /home/vagrant/.bashrc
 echo 'alias artisan="php /vagrant/artisan"' >> /home/vagrant/.bashrc
 
+#https://www.digitalocean.com/community/articles/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04
+echo "--- PhpMyAdmin ---"
+sudo apt-get install phpmyadmin
+echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
+
 # Laravel stuff here, if you want
 
 echo "--- All set to go! Would you like to play a game? ---"
